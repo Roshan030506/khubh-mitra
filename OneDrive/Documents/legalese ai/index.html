@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="LegalEase AI - Law and Rights Assistant in Regional Languages for India. Grounded in real legal sources." />
+    <meta name="theme-color" content="#4F46E5" />
+    <title>LegalEase AI — Law & Rights Assistant in Regional Languages</title>
+    <link rel="icon" href="./assets/logos/legalease-favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;600&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Tamil:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- Topbar Navigation -->
+      <header class="topbar">
+        <a class="brand" href="#home" aria-label="LegalEase AI home">
+          <img class="brand-logo" src="./assets/logos/legalease-mark.svg" alt="" aria-hidden="true" />
+          <span>LegalEase AI</span>
+        </a>
+
+        <nav class="nav-tabs" aria-label="Primary navigation">
+          <button class="nav-tab active" data-view="home" data-i18n="navHome">Home</button>
+          <button class="nav-tab" data-view="chat" data-i18n="navChat">Ask</button>
+          <button class="nav-tab" data-view="draft" data-i18n="navDraft">Draft</button>
+          <button class="nav-tab" data-view="library" data-i18n="navLibrary">Library</button>
+          <button class="nav-tab" data-view="help" data-i18n="navHelp">Find Help</button>
+        </nav>
+
+        <div class="top-actions">
+          <!-- Language Switcher -->
+          <div class="language-switcher">
+            <button class="language-button" id="languageButton" aria-haspopup="listbox" aria-expanded="false" aria-label="Select display language">
+              <span aria-hidden="true" class="globe-icon">🌐</span>
+              <span id="currentLanguage">English</span>
+              <span class="chevron" aria-hidden="true">▾</span>
+            </button>
+            <div class="language-menu" id="languageMenu" role="listbox" aria-label="Choose display language">
+              <label class="sr-only" for="languageSearch">Search languages</label>
+              <input id="languageSearch" class="language-search" type="search" placeholder="Search language..." />
+              <div class="language-list" id="languageList"></div>
+            </div>
+          </div>
+          <button class="icon-button" id="settingsButton" aria-label="Open settings" data-view="settings">
+            <span aria-hidden="true">⚙</span>
+          </button>
+          <button class="signin-button" id="authBtn" data-i18n="signIn">Sign in</button>
+        </div>
+      </header>
+
+      <main id="mainContent">
+        <!-- View 1: Home Section -->
+        <section class="view active" id="homeView" aria-labelledby="homeTitle">
+          <div class="hero-grid reveal">
+            <div class="hero-copy">
+              <p class="eyebrow" data-i18n="eyebrow">Law and rights assistant</p>
+              <h1 id="homeTitle" data-i18n="heroTitle">Ask about your rights in seconds</h1>
+              <p class="hero-subtitle" data-i18n="heroSubtitle">
+                Plain-language legal help, in your own language, grounded in real legal sources.
+              </p>
+            </div>
+
+            <form class="ask-panel" id="homeAskForm">
+              <label class="sr-only" for="homeQuestion" data-i18n="questionLabel">Ask a legal question</label>
+              <div class="question-input">
+                <button class="icon-button ghost mic-button" id="micButtonHome" type="button" aria-label="Voice input" title="Click to speak">
+                  <span class="mic-icon" aria-hidden="true">🎙</span>
+                  <span class="mic-pulse-ring"></span>
+                </button>
+                <textarea id="homeQuestion" rows="2" data-i18n-placeholder="questionPlaceholder" placeholder="Type or speak your question... (e.g. Can my boss delay my salary?)"></textarea>
+                <button class="primary-button" type="submit" data-i18n="askButton">Ask</button>
+              </div>
+              <div class="voice-status-bar" id="voiceStatusHome" hidden>
+                <span class="recording-dot"></span>
+                <span class="voice-status-text">Listening... Speak now</span>
+              </div>
+              <div class="quick-topics" aria-label="Quick topics">
+                <button type="button" class="topic-pill" data-topic="Labor" data-i18n="topicLabor">Labor</button>
+                <button type="button" class="topic-pill" data-topic="Consumer" data-i18n="topicConsumer">Consumer</button>
+                <button type="button" class="topic-pill" data-topic="Tenancy" data-i18n="topicTenancy">Tenancy</button>
+                <button type="button" class="topic-pill" data-topic="RTI" data-i18n="topicRti">RTI</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="first-run" id="firstRunPrompt">
+            <span data-i18n="firstRun">Prefer another language? Switch anytime from the top bar.</span>
+            <button class="text-button" id="dismissPrompt" data-i18n="dismiss">Dismiss</button>
+          </div>
+
+          <section class="compliance-strip reveal" aria-label="Important legal and privacy notice">
+            <strong>Legal information, not legal advice.</strong>
+            <span>Use this for general rights guidance. Consult a licensed lawyer or DLSA desk before acting on a specific case.</span>
+            <button class="text-button" type="button" data-policy="disclaimer">Read policy</button>
+          </section>
+
+          <div class="home-rail reveal">
+            <article>
+              <span class="metric">24/7</span>
+              <p data-i18n="metricOne">Access plain-language guidance before you visit an office.</p>
+            </article>
+            <article>
+              <span class="metric">8+</span>
+              <p data-i18n="metricTwo">Regional language-ready interface and voice settings.</p>
+            </article>
+            <article>
+              <span class="metric">AA</span>
+              <p data-i18n="metricThree">Accessible controls with clear focus states and scalable type.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- View 2: Chat & Response View -->
+        <section class="view" id="chatView" aria-labelledby="chatTitle">
+          <div class="section-header reveal">
+            <p class="eyebrow" data-i18n="chatEyebrow">Verified response</p>
+            <h2 id="chatTitle" data-i18n="chatTitle">Your legal answer</h2>
+          </div>
+
+          <form class="compact-ask reveal" id="chatAskForm">
+            <label class="sr-only" for="chatQuestion" data-i18n="questionLabel">Ask a legal question</label>
+            <div class="input-row">
+              <button class="icon-button ghost mic-button" id="micButtonChat" type="button" aria-label="Voice input">
+                <span class="mic-icon" aria-hidden="true">🎙</span>
+                <span class="mic-pulse-ring"></span>
+              </button>
+              <input id="chatQuestion" data-i18n-placeholder="chatPlaceholder" placeholder="Ask a follow-up question..." />
+              <button class="primary-button" type="submit" data-i18n="askButton">Ask</button>
+            </div>
+            <div class="voice-status-bar" id="voiceStatusChat" hidden>
+              <span class="recording-dot"></span>
+              <span class="voice-status-text">Listening... Speak now</span>
+            </div>
+          </form>
+
+          <div class="thinking-line" id="thinkingLine" aria-hidden="true"></div>
+
+          <!-- Answer Card -->
+          <article class="answer-card reveal" aria-live="polite">
+            <div class="answer-meta">
+              <div class="confidence-badge-wrapper">
+                <span class="confidence-dot high" id="confidenceDot" aria-label="High confidence"></span>
+                <span id="confidenceLabel" class="confidence-label">High Confidence</span>
+              </div>
+              <span class="citation-badge verify-pulse" id="citationBadge">Payment of Wages Act, Sec. 5</span>
+            </div>
+            
+            <p id="answerText" data-i18n="answerText">
+              If someone uses words, gestures, or actions intended to insult the modesty of a woman, Indian law may treat it as an offence. Keep a record of the incident, avoid confrontation, and consider filing a complaint at the nearest police station or through a women helpline.
+            </p>
+
+            <div class="action-steps-container" id="actionStepsContainer">
+              <h4 class="steps-title">Recommended Actionable Steps:</h4>
+              <ol class="steps-list" id="actionStepsList">
+                <li>Preserve salary slips, work emails, and communication logs.</li>
+                <li>Send a formal written legal notice to the employer.</li>
+              </ol>
+            </div>
+
+            <div class="answer-actions">
+              <button class="icon-label-button" id="readAloudButton" type="button">
+                <span aria-hidden="true">▶</span>
+                <span data-i18n="readAloud">Read aloud</span>
+              </button>
+              <button class="secondary-button" id="createDraftFromChat" type="button">
+                <span>📝 Create Notice Draft</span>
+              </button>
+              <div class="feedback-buttons">
+                <button class="icon-button ghost" id="thumbsUp" type="button" aria-label="Helpful">👍</button>
+                <button class="icon-button ghost" id="thumbsDown" type="button" aria-label="Not helpful">👎</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="notice-card reveal">
+            <span class="confidence-dot warm" aria-label="Expert review recommended"></span>
+            <p id="expertNote" data-i18n="expertNote">For urgent safety risks, contact local emergency services or a legal professional.</p>
+          </article>
+        </section>
+
+        <!-- View 3: Document Drafting Wizard -->
+        <section class="view" id="draftView" aria-labelledby="draftTitle">
+          <div class="section-header reveal">
+            <p class="eyebrow" data-i18n="draftEyebrow">Document drafting</p>
+            <h2 id="draftTitle" data-i18n="draftTitle">Create a simple legal notice</h2>
+          </div>
+
+          <div class="draft-type-selector">
+            <label for="docTypeSelect">Document Category:</label>
+            <select id="docTypeSelect" class="form-select">
+              <option value="salary_notice">Legal Demand Notice (Unpaid Salary)</option>
+              <option value="consumer_complaint">Consumer Complaint (Defective Product/Refund)</option>
+              <option value="tenant_notice">Tenant Dispute Notice (Eviction/Deposit)</option>
+              <option value="rti_application">Right to Information (RTI Application)</option>
+            </select>
+          </div>
+
+          <div class="wizard-layout reveal">
+            <div class="wizard-panel">
+              <div class="progress-track" aria-hidden="true">
+                <span id="wizardProgress"></span>
+              </div>
+              <p class="step-count" id="stepCount">Step 1 of 4</p>
+              <h3 id="wizardQuestion">Who is the notice for?</h3>
+              <input id="wizardInput" placeholder="Name or organization" />
+              <div class="wizard-actions">
+                <button class="secondary-button" id="wizardBack" type="button" data-i18n="backButton">Back</button>
+                <button class="primary-button" id="wizardNext" type="button" data-i18n="nextButton">Next</button>
+              </div>
+            </div>
+
+            <aside class="preview-panel" aria-label="Live document preview">
+              <div class="document-preview" id="documentPreview">
+                <p class="mono" id="previewTitle">LEGAL NOTICE</p>
+                <h3>To: <span data-preview="recipient">Recipient name</span></h3>
+                <p>Subject: <span data-preview="subject">Issue summary</span></p>
+                <p>
+                  This notice records that <span data-preview="issue">the issue</span>. The requested action is
+                  <span data-preview="relief">the expected resolution</span>.
+                </p>
+                <p>Date: <span data-preview="date">Today</span></p>
+              </div>
+              <div class="ready-card" id="readyCard" hidden>
+                <span class="checkmark" aria-hidden="true">✓</span>
+                <strong data-i18n="documentReady">Document ready</strong>
+                <div class="button-group">
+                  <button class="primary-button" id="downloadPdfBtn" type="button" data-i18n="download">Download PDF/HTML</button>
+                  <button class="secondary-button" id="copyNoticeBtn" type="button">Copy Text</button>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- View 4: Rights Library -->
+        <section class="view" id="libraryView" aria-labelledby="libraryTitle">
+          <div class="section-header reveal">
+            <p class="eyebrow" data-i18n="libraryEyebrow">Rights library</p>
+            <h2 id="libraryTitle" data-i18n="libraryTitle">Plain-language rights guides</h2>
+          </div>
+
+          <div class="category-filters" id="libraryFilters">
+            <button class="filter-chip active" data-cat="All">All Topics</button>
+            <button class="filter-chip" data-cat="Labor">Labor Rights</button>
+            <button class="filter-chip" data-cat="Consumer">Consumer</button>
+            <button class="filter-chip" data-cat="Tenancy">Tenancy</button>
+            <button class="filter-chip" data-cat="RTI">RTI</button>
+            <button class="filter-chip" data-cat="Safety">Safety & BNS</button>
+          </div>
+
+          <div class="library-grid reveal" id="libraryGrid">
+            <!-- Dynamic cards rendered by app.js -->
+          </div>
+        </section>
+
+        <!-- View 5: Find Legal Help -->
+        <section class="view" id="helpView" aria-labelledby="helpTitle">
+          <div class="section-header reveal">
+            <p class="eyebrow" data-i18n="helpEyebrow">Find legal help</p>
+            <h2 id="helpTitle" data-i18n="helpTitle">Nearby support options</h2>
+          </div>
+
+          <div class="help-search-bar">
+            <input type="search" id="helpSearchInput" placeholder="Filter by city, area, or legal issue (e.g. DLSA, Women, Consumer)..." />
+            <button class="secondary-button" id="useLocationBtn" type="button">📍 Use Location</button>
+          </div>
+
+          <div class="help-layout reveal">
+            <div class="map-panel" aria-label="Interactive legal aid locator map">
+              <span class="map-road road-one"></span>
+              <span class="map-road road-two"></span>
+              <button class="map-pin pin-one" data-center="0" title="District Legal Services Authority"></button>
+              <button class="map-pin pin-two" data-center="1" title="Women helpline desk"></button>
+              <button class="map-pin pin-three" data-center="2" title="Consumer Help Center"></button>
+            </div>
+            <div class="help-list" id="helpListContainer">
+              <!-- Rendered via app.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- View 6: Settings -->
+        <section class="view" id="settingsView" aria-labelledby="settingsTitle">
+          <div class="section-header reveal">
+            <p class="eyebrow" data-i18n="settingsEyebrow">Preferences</p>
+            <h2 id="settingsTitle" data-i18n="settingsTitle">Settings</h2>
+          </div>
+
+          <div class="settings-grid reveal">
+            <label class="setting-row">
+              <span>
+                <strong data-i18n="voiceLanguage">Voice language</strong>
+                <small data-i18n="voiceLanguageMeta">Display and voice can be different.</small>
+              </span>
+              <select id="voiceLanguage" class="form-select">
+                <option value="en-IN">English (India)</option>
+                <option value="hi-IN">हिन्दी (Hindi)</option>
+                <option value="ta-IN">தமிழ் (Tamil)</option>
+                <option value="bn-IN">বাংলা (Bengali)</option>
+                <option value="mr-IN">मराठी (Marathi)</option>
+                <option value="te-IN">తెలుగు (Telugu)</option>
+                <option value="kn-IN">ಕನ್ನಡ (Kannada)</option>
+                <option value="ml-IN">മലയാളം (Malayalam)</option>
+              </select>
+            </label>
+            <label class="setting-row">
+              <span>
+                <strong data-i18n="voiceOutput">Voice output</strong>
+                <small data-i18n="voiceOutputMeta">Read answers aloud when requested.</small>
+              </span>
+              <input class="switch" id="voiceOutputToggle" type="checkbox" checked />
+            </label>
+            <label class="setting-row">
+              <span>
+                <strong data-i18n="darkMode">Dark mode</strong>
+                <small data-i18n="darkModeMeta">Use a calmer low-light interface.</small>
+              </span>
+              <input class="switch" id="darkModeToggle" type="checkbox" />
+            </label>
+            <div class="policy-panel" id="policyPanel">
+              <h3>Legal, Privacy, and Data Use</h3>
+              <p id="policyText">LegalEase AI provides legal information, not legal advice. Query text may include sensitive details, so production deployments should use encrypted storage, a clear retention policy, and a verified support contact for deletion requests.</p>
+              <div class="button-group">
+                <button class="secondary-button" type="button" data-policy="privacy">Privacy</button>
+                <button class="secondary-button" type="button" data-policy="emergency">Emergency help</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal-overlay" hidden>
+      <div class="modal-card">
+        <button class="modal-close" id="closeAuthModal" aria-label="Close modal">×</button>
+        <div class="modal-header">
+          <h3>Sign in to LegalEase AI</h3>
+          <p>Enter your 10-digit mobile number for secure phone authentication.</p>
+        </div>
+
+        <!-- Step 1: Phone Request -->
+        <form id="otpRequestForm" class="auth-form">
+          <label for="authPhone">Mobile Phone Number</label>
+          <div class="phone-input-group">
+            <span class="country-code">+91</span>
+            <input type="tel" id="authPhone" placeholder="9876543210" required pattern="[6-9][0-9]{9}" />
+          </div>
+          <button class="primary-button full-width" type="submit">Send Security OTP</button>
+        </form>
+
+        <!-- Step 2: OTP Verification -->
+        <form id="otpVerifyForm" class="auth-form" hidden>
+          <label for="authOtp">Enter 6-Digit OTP</label>
+          <input type="text" id="authOtp" placeholder="123456" required pattern="[0-9]{6}" maxlength="6" />
+          <p class="otp-hint" id="otpHint"></p>
+          <button class="primary-button full-width" type="submit">Verify & Sign In</button>
+          <button class="text-button" id="resendOtpBtn" type="button">Request New OTP</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast" aria-live="polite" hidden></div>
+
+    <script src="./app.js"></script>
+    <script>
+      // Register PWA Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW registration skipped:', err));
+        });
+      }
+    </script>
+  </body>
+</html>

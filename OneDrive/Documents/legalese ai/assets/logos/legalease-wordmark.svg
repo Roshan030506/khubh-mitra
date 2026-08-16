@@ -1,0 +1,13 @@
+<svg width="300" height="76" viewBox="0 0 300 76" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">LegalEase AI wordmark</title>
+  <desc id="desc">A modern indigo legal assistant logo with a verified document symbol and LegalEase AI wordmark.</desc>
+  <rect x="2" y="8" width="60" height="60" rx="16" fill="#4F46E5"/>
+  <path d="M22 24.5C22 21.4624 24.4624 19 27.5 19H42L50 27V51.5C50 54.5376 47.5376 57 44.5 57H27.5C24.4624 57 22 54.5376 22 51.5V24.5Z" fill="white"/>
+  <path d="M42 19V27H50" fill="#DDE3FF"/>
+  <path d="M29 35H43" stroke="#4F46E5" stroke-width="3" stroke-linecap="round"/>
+  <path d="M29 43H39" stroke="#4F46E5" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="47" cy="52" r="9" fill="#10B981" stroke="#4F46E5" stroke-width="3"/>
+  <path d="M43.4 51.8L46.2 54.6L51.2 48.9" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="78" y="38" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="800" letter-spacing="0">LegalEase</text>
+  <text x="79" y="58" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing="0">AI rights assistant</text>
+</svg>

@@ -1,0 +1,16 @@
+{
+  "short_name": "LegalEase",
+  "name": "LegalEase AI - Law & Rights Assistant",
+  "icons": [
+    {
+      "src": "./assets/logos/legalease-mark.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#FBFCFE",
+  "theme_color": "#4F46E5",
+  "display": "standalone",
+  "orientation": "portrait"
+}

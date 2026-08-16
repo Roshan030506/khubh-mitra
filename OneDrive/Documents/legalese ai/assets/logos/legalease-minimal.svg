@@ -1,0 +1,9 @@
+<svg width="260" height="64" viewBox="0 0 260 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">LegalEase AI minimal logo</title>
+  <desc id="desc">A minimal monochrome LegalEase AI logo for neutral website placements.</desc>
+  <rect x="4" y="8" width="48" height="48" rx="13" fill="#0F172A"/>
+  <path d="M20 21V43H38" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="43" cy="43" r="8" fill="#10B981" stroke="#FFFFFF" stroke-width="3"/>
+  <path d="M39.8 42.8L42.2 45.2L46.5 40.2" stroke="white" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="66" y="39" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="0">LegalEase AI</text>
+</svg>

@@ -1,0 +1,26 @@
+{
+  "name": "legalease-ai",
+  "version": "2.0.0",
+  "description": "LegalEase AI - Law & Rights Assistant in Regional Languages",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node test_suite.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "serverless-http": "^3.2.0"
+  },
+  "keywords": [
+    "legal-ai",
+    "rag",
+    "regional-languages",
+    "india-law",
+    "legal-aid"
+  ],
+  "author": "Team SPIRIT",
+  "license": "MIT"
+}
