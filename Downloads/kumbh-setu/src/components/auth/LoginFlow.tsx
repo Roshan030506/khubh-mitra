@@ -5,7 +5,7 @@ import { useApp } from '../../context/AppContext';
 import { 
   PersonStanding,
   Store, 
-  Shield, 
+  Shield,
   ArrowRight, 
   Flame, 
   Sparkles, 
@@ -44,13 +44,13 @@ export const LoginFlow: React.FC = () => {
       role: 'admin' as UserRole,
       title: t.admin,
       description: t.adminDesc,
-      icon: <Shield className="w-8 h-8 text-slate-300" />,
-      accent: 'border-slate-500/40 hover:border-slate-300 bg-slate-900/40 hover:bg-slate-800/50',
-      badge: 'District Police & Control Room',
-      badgeColor: 'bg-slate-500/20 text-slate-300 border-slate-500/30',
-      authMethod: 'Firebase Admin Claim Only (No Signup)',
-      highlights: ['Real-Time Crowd Density Heatmaps', 'Vendor Compliance Approval Queue', 'Rapid Response Patrol Dispatch', 'Missing Person Broadcast Center']
-    }
+      icon: <Shield className="w-8 h-8 text-red-400" />,
+      accent: 'border-red-500/40 hover:border-red-400 bg-red-950/20 hover:bg-red-950/30',
+      badge: 'Govt & District Control Room',
+      badgeColor: 'bg-red-500/20 text-red-300 border-red-500/30',
+      authMethod: 'Firebase Email/Password (Restricted)',
+      highlights: ['Live Crowd Heatmaps & Zone Telemetry', 'Vendor Compliance Verification Queue', 'Emergency SOS Dispatch & QRT Alerts', 'Provisioned Accounts Only — No Signup']
+    },
   ];
 
   // Role selection is the only public entry screen. Cards navigate directly to auth.

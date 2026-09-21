@@ -26,6 +26,7 @@ import { AdminAppShell } from './components/admin/AdminAppShell';
  * Evaluates Firebase onAuthStateChanged and routes:
  * / → SplashLoader (checks auth state and redirects)
  * /login → Standalone LoginFlow (Public Only)
+ * /login/pilgrim, /login/vendor, /login/admin → Role-specific auth screens (Public Only)
  * /pilgrim/* → Pilgrim App Shell (Protected, role: pilgrim)
  * /vendor/* → Vendor App Shell (Protected, role: vendor, status: approved)
  * /vendor/pending → "Under review" screen (Protected, role: vendor, status: pending_approval)
@@ -123,15 +124,8 @@ const AppRouter: React.FC = () => {
           }
         />
 
-        {/* /admin/* → Admin App Shell (PROTECTED, role: admin) */}
-        <Route
-          path="/admin/*"
-          element={
-            <ProtectedRoute role="admin">
-              <AdminAppShell />
-            </ProtectedRoute>
-          }
-        />
+        {/* /admin/* → Public Admin App Shell */}
+        <Route path="/admin/*" element={<AdminAppShell />} />
 
         {/* Catch-all route -> redirect to root resolver */}
         <Route path="*" element={<Navigate to="/" replace />} />
